@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>MBC Laboratory</title>
+        <link rel="stylesheet" href="contact.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+<body>
+  <div class="container">
+    <!-- NAVIGATION BAR -->
+    <nav class="wrapper">
+      <div class="brand">
+        <div class="firstname">MBC</div>
+        <div class="lastname">Laboratory</div>
+      </div>
+      <ul class="navigation">
+        <li><a href="index.html" class="a-navbar">Home</a></li>
+        <li><a href="divisi.html" class="a-navbar">Divisi & Layanan</a></li>
+        <li><a href="contact.html" class="a-navbar">Contact</a></li>
+        <li><a href="developer.html" class="a-navbar">Developer</a></li>
+        <li><img src="mbclab1.png" alt="..." /></li>
+      </ul>
+    </nav>
+  </div>
+    <!-- NAVIGATION BAR END -->
+
+    <!-- FORMULIR -->
+  <div class="form-container">
+
+    <div class="company-info">
+      <h2 class="info-title">Hubungi Kami</h2>
+      <p class="info-text"><strong>Alamat:</strong> Jl. Telekomunikasi No.1, Sukapura, Kec. Dayeuhkolot, Kabupaten Bandung, Jawa Barat 40267</p>
+      <p class="info-text"><strong>WhatsApp:</strong> +62 812-3456-7890 (Intan)</p>
+      <p class="info-text"><strong>Email:</strong> mbclab1234@gmail.com</p>
+      
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.338936629578!2d107.62557671088484!3d-6.969281993002255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e9bc3974981d%3A0x613eec0feec9fcf7!2sTelkom%20University%20Landmark%20Tower%20(TULT)!5e0!3m2!1sid!2sid!4v1751680732692!5m2!1sid!2sid"
+          width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <h2 class="form-title">Contact Us
+
+    <form id="contact-form" class="contact-form">
+      <div class="form-group">
+        <input class="form-input" type="text" name="name" placeholder="Your Name" required />
+      </div>
+      <div class="form-group">
+        <input class="form-input" type="email" name="email" placeholder="Your Email" required />
+      </div>
+      <div class="form-group">
+        <input class="form-input" type="text" name="title" placeholder="Subject" required />
+      </div>
+      <div class="form-group">
+        <textarea class="form-textarea" name="message" placeholder="Your Message" rows="5" required></textarea>
+      </div>
+      <button class="submit-btn" type="submit">Send Message</button>
+    </form>
+    </h2>
+  </div>
+  <script>
+    const form = document.getElementById('contact-form');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        title: formData.get('title'),
+        message: formData.get('message')
+      };
+
+      try {
+        const response = await fetch('http://localhost:3000/send-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          alert('✅ ' + result.message);
+          form.reset();
+        } else {
+          alert('❌ ' + result.message);
+        }
+      } catch (error) {
+        alert('🚫 Error: ' + error.message);
+        console.error(error);
+      }
+    });
+  </script>
+    <!-- FORMULIR END -->
+</body>
+<footer class="footer">
+        <!-- FOOTER -->
+            <div class="footer-left">
+                <h3>Developed by :</h3>
+                <div class="image">
+                    <img src="mbclab1.png" alt="">
+                </div>
+                <p class="footer-copyright">MBC Laboratory</p>
+            </div>
+
+            <div class="footer-center">
+                <div>
+                    <i class="fa fa-map-marker"></i>
+                    <p><span>Indonesia</span> Jawa Barat, Bandung</p>
+                </div>
+                <div>
+                    <i class="fa fa-envelope"></i>
+                    <p><a href="a">mbclab1234@gmail.com</a></p>
+                </div>
+            </div>
+
+            <div class="footer-right">
+                <p class="footer-about">
+                    <span>About</span>
+                    Web ini dikembangkan untuk memenuhi tugas Technical Test MBC Laboratory divisi Cyber Security
+                </p>
+
+                <div class="footer-media">
+                    <a href="https://www.instagram.com/mbclab?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fa fa-instagram"></i></a>
+                    <a href="http://www.youtube.com/@MBCLaboratory"><i class="fa fa-youtube"></i></a>
+                </div>
+
+            </div>
+        <!-- FOOTER END -->
+        </footer>
+</html>
