@@ -39,7 +39,7 @@ project-root/
 
 ├── certs/ # Folder sertifikat SSL
 
-│ ├── cert.pem # SSL Certificate (self-signed / Let's Encrypt)
+│ ├── cert.pem # SSL Certificate
 
 │ └── key.pem # SSL Private Key
 
